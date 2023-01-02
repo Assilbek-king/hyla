@@ -1,0 +1,83 @@
+    {% extends 'base.html' %}
+{% block content %}
+
+<main>
+            <!-- page__title-start -->
+            <section class="page__title p-relative d-flex align-items-center" data-background="/static/img/bg/page-title-1.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="page__title-inner text-center">
+                                <h1>Ваши избранные товары</h1>
+                                <div class="page__title-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb justify-content-center">
+                                        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Избранные</li>
+                                    </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- page__title-end -->
+
+            <!-- cart-area start -->
+            <section class="cart-area pb-120 pt-120">
+                <div class="container">
+                    {% if wish_list %}
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="#">
+                                <div class="table-content table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-thumbnail">Фото</th>
+                                                <th class="cart-product-name">Название</th>
+                                                <th class="product-price">Цена</th>
+                                                <th class="product-quantity">Добавить в корзину</th>
+                                                <th class="product-remove">Удалить</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for wi in wish_list %}
+                                            <tr>
+                                                <td class="product-thumbnail"><a href="/good/{{ wi.good.id }}"><img src="/media/{{ wi.good.logo }}" alt=""></a></td>
+                                                <td class="product-name"><a href="/good/{{ wi.good.id }}">{{ wi.good.title }}</a></td>
+                                                <td class="product-price"><span class="amount">{{ wi.good.price }}тг</span></td>
+                                                <td class="product-quantity">
+                                                    <a  class="btn-tp js-add-to-cart" data-id="{{ wi.good.id }}">Добавить в корзину</a>
+                                                </td>
+<!--                                                <td class="product-subtotal"><span class="amount">$130.00</span></td>-->
+                                                <td class="product-remove">
+                                                    <form action="/cart/" method="post" style="display:none">
+                                                    </form>
+                                                    <form action="/cart/" method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="action" value="remove_from_wish_list">
+                                                        <input type="hidden" name="good_id" value="{{ wi.good.id }}">
+                                                        <input type="hidden" name="return_url" value="/wish/">
+                                                        <button><i class="fa fa-times"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p class="cart-page-title">Ваша списка пуста <a class="checkout-click3" href="/catalog">Начните покупать сейчас !</a></p>
+                    {% endif %}
+                </div>
+            </section>
+            <!-- cart-area end -->
+
+        </main>
+
+    {% endblock %}
