@@ -1,0 +1,297 @@
+{% if current_user %}
+
+<html lang="en">
+    <head>
+        <!-- <meta charset="utf-8" />
+        <title> | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        App favicon
+        <link rel="shortcut icon" href="/static/local/images/favicon.ico"> -->
+
+        <meta charset="utf-8" />
+
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+                <meta content="" name="author" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+                <!-- App favicon -->
+         <title>Hyla</title>
+                <link rel="shortcut icon" href="/static/img/logo/logo.png">
+
+         <!-- App css -->
+         <link href="/static/local/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+         <link href="/static/local/css/icons.min.css" rel="stylesheet" type="text/css" />
+         <link href="/static/local/css/app.min.css" rel="stylesheet" type="text/css" />
+
+
+    </head>
+
+    <body id="body" class="dark-sidebar enlarge-menu">
+
+        {% csrf_token %}
+        <!-- Top Bar Start -->
+        <!-- Top Bar Start -->
+
+            <nav class="navbar-custom" id="navbar-custom" style="    margin-left: 0px;">
+                <ul class="list-unstyled topbar-nav float-end mb-0">
+
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="false" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <img src="/static/img/logo/logo.png" alt="profile-user" class="rounded-circle me-2 thumb-sm" />
+                                <div>
+                                    <small class="d-none d-md-block font-11">Admin</small>
+                                    <span class="d-none d-md-block fw-semibold font-12">{{ current_user.last_name }} {{ current_user.first_name }}<i
+                                            class="mdi mdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!--<a class="dropdown-item" href="#"><i class="ti ti-user font-16 me-1 align-text-bottom"></i> Profile</a>
+                            <a class="dropdown-item" href="/admin"><i class="ti ti-settings font-16 me-1 align-text-bottom"></i> Settings</a>-->
+                            <!--<div class="dropdown-divider mb-0"></div>-->
+                            <a class="dropdown-item" href="/logout"><i class="ti ti-power font-16 me-1 align-text-bottom"></i> Выход</a>
+                          <!--   <div class="dropdown-divider mb-0"></div>-->
+                           <!-- <a class="dropdown-item" href="/ip"><i class="ti ti-power font-16 me-1 align-text-bottom"></i> ip address</a>-->
+                        </div>
+                    </li><!--end topbar-profile-->
+                   <!-- <li class="notification-list">
+                        <a class="nav-link arrow-none nav-icon offcanvas-btn" href="#" role="button" aria-controls="Rightbar">
+                            <i class="ti ti-settings ti-spin"></i>
+                        </a>
+                    </li>-->
+                </ul><!--end topbar-nav-->
+
+                <ul class="list-unstyled topbar-nav mb-0">
+
+
+                </ul>
+            </nav>
+            <!-- end navbar-->
+
+        <!-- Top Bar End -->
+        <!-- Top Bar End -->
+
+
+
+            <!-- Page Content-->
+            <div class="page-content-tab">
+
+                <div class="container-fluid">
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th>Название</th>
+                                                <th>Количество</th>
+                                                <th>Цена</th>
+                                                <th>Итог</th>
+                                                <th>Дата</th>
+                                                <th>ФИО</th>
+                                                <th>Телефон</th>
+                                                <th>Город</th>
+                                                <th>Статус</th>
+                                                <th>Действие</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for cart in carts %}
+                                            <tr class="js-item  border
+                                             {% if cart.status == -1 %} bg-danger {% endif %}
+                                             {% if cart.status == 2 %} bg-warning {% endif %}
+                                             {% if cart.status == 3 %} bg-success {% endif %}
+"
+                                                data-id="{{ cart.id }}">
+                                                <input type="hidden" name="action" value="change_cart">
+                                                <style>
+                                                    td {
+                                                    border:2px solid }
+                                                </style>
+                                                <td colspan="3">
+                                                    {% for ci in cartitems %}
+                                                    {% if ci.cart.id == cart.id %}
+                                                    <div class="row">
+                                                        <div class="col-sm-5">{{ ci.good.title}}</div>
+                                                        <div class="col-sm-4">{{ ci.amount}}</div>
+                                                        <div class="col-sm-3">{{ ci.price}}</div>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% endfor%}
+                                                </td>
+                                                <td>{{ cart.orig_price }}</td>
+                                                <td>{{ cart.created_at }}</td>
+                                                <td>{{ cart.first_name }} {{ cart.last_name }}</td>
+                                                <td>{{ cart.phone }}</td>
+                                                 <td >{{ cart.city }}</td>
+                                                <td><select class="form-select-sm  js-select" name="status" aria-label="Default select example">
+                                                    <option {% if cart.status == 1 %} selected {% endif %} value="1">Создана</option>
+                                                    <option {% if cart.status == 2 %} selected {% endif %} value="2">На расмотрения</option>
+                                                    <option {% if cart.status == 3 %} selected {% endif %} value="3">Обработана</option>
+                                                    <option {% if cart.status == -1 %} selected {% endif %} value="-1">Отклонено</option>
+                                                  </select></td>
+                                                <td>
+                                                    <a  href="#"><i class="las la-save js-update1 font-24"></i></a>
+                                                    <a href="#"><i class="las la-trash-alt js-delete font-24"></i></a>
+                                                </td>
+
+                                            </tr>
+
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table><!--end /table-->
+                                    </div><!--end /tableresponsive-->
+                                    <div class="row">
+                                        <div class="col">
+
+                                        </div><!--end col-->
+                                        <div class="col-auto">
+                                            <nav aria-label="...">
+                                                <ul class="pagination pagination-sm mb-0">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                    </li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </ul><!--end pagination-->
+                                            </nav><!--end nav-->
+                                         </div> <!--end col-->
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div> <!-- end col -->
+                    </div><!--end row-->
+
+                </div><!-- container -->
+
+                <!--Start Rightbar-->
+                <!--Start Rightbar/offcanvas-->
+                <!--<div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+                    <div class="offcanvas-header border-bottom">
+                      <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+                      <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <h6>Account Settings</h6>
+                        <div class="p-2 text-start mt-3">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch1">
+                                <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                            </div>&lt;!&ndash;end form-switch&ndash;&gt;
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+                                <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                            </div>&lt;!&ndash;end form-switch&ndash;&gt;
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="settings-switch3">
+                                <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                            </div>&lt;!&ndash;end form-switch&ndash;&gt;
+                        </div>&lt;!&ndash;end /div&ndash;&gt;
+                        <h6>General Settings</h6>
+                        <div class="p-2 text-start mt-3">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch4">
+                                <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                            </div>&lt;!&ndash;end form-switch&ndash;&gt;
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+                                <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                            </div>&lt;!&ndash;end form-switch&ndash;&gt;
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="settings-switch6">
+                                <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                            </div>&lt;!&ndash;end form-switch&ndash;&gt;
+                        </div>&lt;!&ndash;end /div&ndash;&gt;
+                    </div>&lt;!&ndash;end offcanvas-body&ndash;&gt;
+                </div>-->
+                <!--end Rightbar/offcanvas-->
+                 <!--end Rightbar-->
+
+                <!--Start Footer-->
+                <!-- Footer Start -->
+
+                <!-- end Footer -->
+                <!--end footer-->
+            </div>
+            <!-- end page content -->
+
+        <!-- end page-wrapper -->
+
+        <!-- Javascript  -->
+        <!-- App js -->
+        <script src="/static/local/js/app.js"></script>
+        <script src="/static/local/js/a.js"></script>
+           <script>
+
+
+        $('.js-update1').click(function () {
+            var clicked_container = $(this).parents(".js-item");
+            var csrfmiddlewaretoken = $('[name="csrfmiddlewaretoken"]').val();
+            var oData = {
+                "id": clicked_container.data("id"),
+                "action": clicked_container.find('[name="action"]').val(),
+                "status": clicked_container.find('[name="status"]').val(),
+                "csrfmiddlewaretoken":csrfmiddlewaretoken
+            }
+
+            $.ajax({
+              type: 'POST',
+              url: '/local',
+              dataType: 'json',
+              data: oData,
+              success: function(){
+				alert('Uspewno izmenyon')
+                location.reload();
+              }
+            })
+            return false;
+        })
+
+        $('.js-delete').click(function () {
+            var clicked_container = $(this).parents(".js-item");
+            var csrfmiddlewaretoken = $('[name="csrfmiddlewaretoken"]').val();
+            var oData = {
+                "id": clicked_container.data("id"),
+                "action": 'remove_cart',
+                "status": clicked_container.find('[name="status"]').val(),
+                "csrfmiddlewaretoken":csrfmiddlewaretoken
+            }
+
+            $.ajax({
+              type: 'POST',
+              url: '/local',
+              dataType: 'json',
+              data: oData,
+              success: function(){
+				alert('Uspewno udaleno')
+                location.reload();
+              }
+            })
+            return false;
+        })
+
+
+
+        </script>
+    </body>
+    <!--end body-->
+</html>
+
+{% endif %}

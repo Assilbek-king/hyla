@@ -3,11 +3,11 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>Blackwood - Clean Minimal eCommerce HTML5 Template</title>
+      <title>HYLA - превращает дом в оздоровительный курорт</title>
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Place favicon.ico in the root directory -->
-      <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.png">
+      <link rel="shortcut icon" type="image/x-icon" href="/static/img/logo/logo.png">
       <!-- CSS here -->
       <link rel="stylesheet" href="/static/css/preloader.css">
       <link rel="stylesheet" href="/static/css/bootstrap.css">
@@ -35,6 +35,7 @@
 .alertm_but:hover {    color: #fff;    background-color: #025aa5;    border-color: #01549b;}
 a.alertm_close {    color: red;    text-decoration: none;    position: absolute;    right: 7px;    top: 0px;    font-size: 25px;}
 </style>
+
    </head>
    <body>
       <!--[if lte IE 9]>
@@ -150,7 +151,9 @@ a.alertm_close {    color: red;    text-decoration: none;    position: absolute;
                             <div class="col-xxl-6 col-xl-6 col-lg-6">
                                 <div class="header__middle-right header__middle-right-d d-flex align-items-center justify-content-end">
                                     <div class="sd-contact" style="margin-right:0">
-                                        <span>Получить консультацию <a href="tel:+77777777777">+7 777 777 77 77</a></span>
+                                        {% for contact in contact %}
+                                        <span>Получить консультацию <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></span>
+                                        {% endfor %}
                                     </div>
                                     <!--<div class="header__select header__select-2 d-flex align-items-center">
                                         <div class="header__lang header__select-item header__select-item-3 mr-20">

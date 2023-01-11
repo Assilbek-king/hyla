@@ -55,7 +55,7 @@ class Cart(models.Model):
     created_at = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
-        return f'{self.session_id}  {self.last_name}'
+        return f'{self.first_name} {self.last_name} {self.session_id}  '
 
 
 class CartItem(models.Model):

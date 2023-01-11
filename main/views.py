@@ -1,7 +1,15 @@
 from django.shortcuts import render
+from django.contrib import messages
 from django.http import JsonResponse
+from twilio.rest.verify.v2 import form
+from django.conf import settings
 from main.models import *
 from django.shortcuts import redirect
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+
+
 import requests
 # Create your views here.
 
@@ -250,6 +258,9 @@ def cartHandler(request):
         return_url = request.POST.get('return_url', '')
         action = request.POST.get('action', '')
 
+
+
+
         if action == 'add_to_cart':
             good_id = int(request.POST.get('good_id', 0))
             amount = float(request.POST.get('amount', 0))
@@ -287,7 +298,22 @@ def cartHandler(request):
             new_cart.phone = request.POST.get('phone', '')
             new_cart.created_at = datetime.now()
             new_cart.status = 1
+
+            send_mail(
+                'Contact Form',  # title
+                f"""Новый клиент {new_cart.first_name} {new_cart.last_name} 
+                    телефон : {new_cart.phone}
+                    """,
+                'settings.EMAIL_HOST_USER',
+                ['asilbek.king.22@gmail.com'],
+                fail_silently=False,
+            )
+
+
             new_cart.save()
+
+
+
 
         if action == 'accepted':
             order_id = int(request.POST.get('order_id', 0))
@@ -338,6 +364,9 @@ def cartHandler(request):
         if return_url:
             return redirect(return_url)
 
+
+
+
     cart_items = CartItem.objects.filter(cart__id=new_cart.id).filter(status=0)
 
     return render(request, 'cart.html', {
@@ -387,3 +416,76 @@ def checkoutSuccessHandler(request):
         'contact': contact,
 
     })
+
+def mainHandler(request):
+    if not request.session.get('user_id', None):
+        return redirect('/login')
+    current_user = User.objects.get(id=int(request.session.get('user_id', 0)))
+
+    carts = Cart.objects.filter(status__gt=0)
+    cartitems = CartItem.objects.filter(cart__status__gt = 0)
+
+    if request.POST:
+        action = request.POST.get('action', '')
+
+
+
+    #     elif action == 'new_brok':
+    #         newbr = Broker()
+    #         newbr.title = request.POST.get('broker','')
+    #         newbr.save()
+    #         return JsonResponse({'success': True, 'obj':{'id':newbr.id, 'title':newbr.title}, 'errorMsg': '', '_success': True})
+
+        if action == 'change_cart':
+
+            new = Cart.objects.get(id=int(request.POST.get('id', 0)))
+            new.status = int(request.POST.get('status', 0))
+            new.save()
+            return JsonResponse({'success': True, 'errorMsg': '', '_success': True})
+
+        elif action == 'remove_cart':
+            new = Cart.objects.get(id=int(request.POST.get('id', 0)))
+            new.delete()
+            return JsonResponse({'success': True, 'errorMsg': '', '_success': True})
+
+
+
+
+
+
+
+
+
+
+    return render(request, 'projects-users.html',{
+        'current_user': current_user,
+        'cartitems': cartitems,
+        'carts': carts,
+
+    })
+
+
+def loginHandler(request):
+    if request.POST:
+        login = request.POST.get('login', '')
+        password = request.POST.get('password', '')
+        if login and password:
+            user = authenticate(username=login, password=password)
+            if user is not None:
+                request.session['user_id'] = user.id
+                print(user)
+                return redirect('/local')
+            else:
+                return redirect('/login')
+
+
+    return render(request, 'login.html', {
+                                          })
+
+def exitHandler(request):
+    del request.session['user_id']
+
+
+
+    return render(request, 'login.html', {
+                                          })

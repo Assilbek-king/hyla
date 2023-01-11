@@ -20,9 +20,13 @@ from django.views.static import serve
 from hyla import settings
 from main.views import *
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', indexHandler),
+    path('local', mainHandler),
+    path('login', loginHandler),
+    path('logout', exitHandler),
     path('about', aboutHandler),
     path('contact', contactHandler),
     path('blog', blogHandler),

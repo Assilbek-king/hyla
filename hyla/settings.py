@@ -25,10 +25,17 @@ MEDIA_URL = '/media/'
 SECRET_KEY = 'django-insecure-n31r8#8b4ilf!6h3q0$whh&0#!1ez1r08k*d#4*$5j%%f!s)i6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*','hyla.kz','www.hyla.kz']
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "asilbek.king.22@gmail.com"
+EMAIL_HOST_PASSWORD = "awtnfudjciuytfxt"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
+EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
+
+ALLOWED_HOSTS = ['*','hyla.kz','www.hyla.kz','http://127.0.0.1:8000/']
 
 # Application definition
 
@@ -127,3 +134,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
