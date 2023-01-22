@@ -19,6 +19,7 @@ def indexHandler(request):
     infos = Info.objects.all()
     contact = Contact.objects.all()[:1]
     blogs = Blog.objects.all()
+    nagrads = Nagrada.objects.all()
     cart_items = []
     new_cart = None
 
@@ -38,6 +39,7 @@ def indexHandler(request):
         'infos': infos,
         'contact': contact,
         'blogs': blogs,
+        'nagrads': nagrads,
                                           })
 
 def aboutHandler(request):

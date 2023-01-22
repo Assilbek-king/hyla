@@ -5,14 +5,14 @@
             <!-- slider area start -->
             <section class="slider__area">
                 <div class="slider__active swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="slider__item slider__height swiper-slide d-flex align-items-center include-bg" data-background="/static/img/dom.jpg">
+                    <div class="swiper-wrappe">
+                        <div class="slider__item slider__height swiper-slide d-flex align-items-center include-bg" data-background="/static/img/fon1.jpg">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xxl-12">
-                                        <div class="slider__content slider__content-3 p-relative z-index-11 text-center">
+                                        <div class=" slider__content- p-relative z-index-11 text-center">
                                             <!--<span data-animation="fadeInUp" data-delay=".3s">SUMMER ‘21</span>-->
-                                            <h5 class="slider__title" data-animation="fadeInUp" data-delay=".5s">HYLA - превращает дом
+                                            <h5 class="slider__title " style="color:black;background:#ffffff9e;font-family:calibri">HYLA - превращает дом
 в оздоровительный курорт</h5>
 <!--                                            <p data-animation="fadeInUp" data-delay=".4s">Combining Extraordinary Quality</p>-->
                                         </div>
@@ -21,10 +21,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="main-slider-pagination main-slider-pagination-2">
-                        <button class="main-slider-button-prev"><i class="fal fa-angle-left"></i></button>
-                        <button class="main-slider-button-next"><i class="fal fa-angle-right"></i></button>
-                    </div>
+
                 </div>
             </section>
             <!-- slider area end -->
@@ -1058,8 +1055,12 @@
             </section>
             <!-- trending__categories end -->
 
+
+
+
+
             <!-- product area start -->
-            <section class="product__area pt-80 pb-75">
+            <section class="product__area pt-50 ">
                 <div class="container">
                     <div class="row">
                             <div class="col-xl-12">
@@ -1070,7 +1071,104 @@
                         </div>
                     </div>
 
-                    {% for info in infos %}
+                    <div class="row">
+                           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                               <div class="about__history-wrapper">
+                                <div class="about__history-title-area">
+                                    <span class="about__history-title-pre"></span>
+                                    <h3 class="about__history-title">
+                                        <span style="font-weight:700">Создает целебный воздух</span>
+                                        <p>даже когда Вы проводите уборку</p>
+
+                                    </h3>
+                                </div>
+                                <p class="about__history-text">Главная цель любой уборки - отсутствие пыли в воздухе.
+                            HYLA - единственная система, которая полноценно справляется с этой задачей.</p>
+                                   <p class="about__history-text">- очищает воздух на 99,99% <br>
+                                   - нормализует влажность<br>
+                                   - насыщает воздух ионами<br>
+                                   - обогащает целебными экстрактами эфирных масел, травяных отваров, минералами, морской солью...</p>
+
+                            </div>
+                           </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                               <div class="about__gallery-thumb w-img mb-10">
+                                            <img src="/static/img/noroot.png" alt="">
+                               </div>
+                           </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                               <div class="about__gallery-thumb w-img mb-10" >
+                                   <img src="/static/img/EST___.png" alt="" style="    margin-top: -200px;">
+                               </div>
+                           </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                               <div class="about__history-wrapper">
+                                <div class="about__history-title-area">
+                                    <span class="about__history-title-pre"></span>
+                                    <h3 class="about__history-title">
+                                        <span style="font-weight:700">Профессиональная чистота</span>
+                                        <p>с пролонгированным результатом</p>
+
+                                    </h3>
+                                </div>
+                                <p class="about__history-text">Профессиональная чистотас пролонгированным результатомПравильный принцип работы и набор необходимых насадок обеспечат Вам полноценную чистоту на длительный срок.</p>
+                                   <p class="about__history-text">- уборка любых, даже самых деликатных, поверхностей <br>
+                                   - возможность убрать пыль из элементов декора (уголков рельефа)<br>
+                                   - обеспыливание штор, не снимая их с карниза<br>
+                                   - глубинная чистка матрасов, подушек, мягкой мебели и ковров</p>
+                                                                <p class="about__history-text">HYLA - единственная система, которая полностью задерживает всю пыль, которую собрала. Именно поэтому, с появлением Экомашины в доме, пыли становится меньше, а необходимость очередной уборки наступает реже.</p>
+
+                            </div>
+                           </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- product area end -->
+
+            <section class="product__area pt-50 ">
+                <div class="container">
+
+                    <div class="blog-thumb blog-video">
+                                        <video src="/static/img/video-new.mp4" width="80%" style="margin:0 auto;display: block;" autoplay muted controls></video>
+                                       <a data-fancybox="" href="/static/img/video-new.mp4" class="play-btn popup-video"><i class="fas fa-play"></i></a>
+                                    </div>
+                </div>
+            </section>
+
+
+
+
+                   <div class="banner__sd-area " data-background="/static/img/a2.png" style="">
+                <div class="container">
+                    <div class="row" style="justify-content:right">
+                            <div class="col-xl-6 mt-50" >
+                                <div class="trending__info  pb-0">
+                                <h2>Сепараторная технология DEFENDER.</h2>
+                                <p>(защитник)</p>
+
+                            </div>
+                                <img src="/static/img/def1.png"  style="width:150px" alt="">
+                                <div class="about__history-wrapper mt-20">
+                                <p class="about__history-text">Сепаратор - турбина особой конструкции, состоящая из 240 ребер, расположенных в 4 ряда.</p>
+                                <p class="about__history-text">Каждый ряд ребер сепаратора имеет свой наклон и создает определенный воздушно-водяной вихрь для максимального задержания пыли.</p>
+                                <p class="about__history-text">Новый Сепаратор - DEFENDER - способен улавливать не только мелкую пыль, но и NANO-частицы.</p>
+                                <p class="about__history-text">Во время сильного всплеска Пандемии в Италии Экомашина прошла испытания в Миланском университете SIMA и получила рекомендацию использования в качестве эффективной защиты от распространения вирусных инфекций.</p>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- product area start -->
+            <section class="product__area pt-50 ">
+                <div class="container">
 
                     <div class="row">
                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
@@ -1078,26 +1176,50 @@
                                 <div class="about__history-title-area">
                                     <span class="about__history-title-pre"></span>
                                     <h3 class="about__history-title">
-                                        <span>{{ info.title}}</span> <br>
+                                        <span style="font-weight:700">Максимальный результат при минимальных затратах</span>
+                                        <p>ресурс HYLA более 20 лет, без расходов</p>
 
                                     </h3>
                                 </div>
-                                <p class="about__history-text">{{ info.description }}</p>
+                                <p class="about__history-text">HYLA - это решение, которое принимается один раз и оправдывает себя долгие годы:</p>
+                                   <p class="about__history-text">- нет сменных фильтров <br>
+                                   - энергосберегающий двигатель нового поколения экономит от 48 000 ват в год<br>
+                                   - профессиональная надежность - опыт безотказной работы Экомашины у наших клиентов уже более 20 лет<br>
+                                   </p>
 
                             </div>
                            </div>
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3">
-                               <div class="about__gallery-thumb w-img mb-10">
-                                            <img src="/media/{{ info.logo }}" alt="">
-                                        </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                               <div class="about__gallery-thumb w-img mb-10" style="position:relative">
+                                            <img src="/static/img/number.png" alt="" >
+                                            <a class="" style="    animation: video-ripple 1560ms ease-out infinite;"><img src="/static/img/n1.png" alt="" style=" width:25px;position:absolute;top: 26%;
+    left: 43%;"></a>
+                                            <img src="/static/img/n2.png" alt="" style=" width:25px;position:absolute;top: 35%;
+    left: 32%;">
+                                            <img src="/static/img/n3.png" alt="" style=" width:25px;position:absolute;top: 58%;
+    left: 41%;">
+                                            <img src="/static/img/n4.png" alt="" style=" width:25px;position:absolute;top: 68%;
+    left: 61%;">
+                                            <img src="/static/img/n5.png" alt="" style=" width:25px;position:absolute;    top: 75%;
+    left: 25%;">
+                                            <img src="/static/img/n6.png" alt="" style=" width:25px;position:absolute;top: 85%;
+    left: 66%;">
+                                            <img src="/static/img/n7.png" alt="" style=" width:25px;position:absolute;top: 5%;
+    left: 50%;">
+
+
+                               </div>
                            </div>
 
                     </div>
 
-                    {% endfor %}
+
                 </div>
             </section>
             <!-- product area end -->
+
+
+
 
             <!-- banner__sd-area-start -->
             <div class="banner__sd-area mt-30 mb-55" data-background="/static/img/hylafon.jpg">
@@ -1147,10 +1269,65 @@
             <!-- banner__sd-area-end -->
 
 
+             <!-- blog area start -->
+            <section class="blog__area pb-15">
+                <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12">
+                            <div class="trending__info text-center pb-30">
+                                <h2>Награды</h2>
+                                <p>и рекомендации профессионалов</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xxl-12">
+                            <div class="blog__slider-2 owl-carousel">
+                                 {% for nag in nagrads %}
+                                <div class="blog__item blog__item-2 transition-3 mb-30 white-bg">
+                                    <div class="blog__thumb w-img fix p-relative">
+                                        <a href="blog-details.html">
+                                            <img src="/media/{{ nag.logo }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="blog__content blog__content-3 p-relative">
+                                        <div class="blog__meta blog__meta-2 mb-10">
+                                            <span>
+                                                <a href="#"> {{ nag.date.year }}г</a>
+                                            </span>
+                                        </div>
+                                        <h3 class="blog__title">
+                                            <a href="#">{{ nag.title }}</a>
+                                        </h3>
+                                        <p> {{ nag.description }}</p>
+                                       <!-- <div class="blog__btn">
+                                            <a href="blog-details.html" class="link-btn-2">Read More</a>
+                                        </div>-->
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- blog area end -->
+
+
+            <!-- banner__sd-area-start -->
+            <div class="banner__sd-area mt-30 mb-55" style="min-height:300px;background-attachment:fixed" data-background="/static/img/semya.jpg">
+                <div class="container">
+                    <div class="trending__info text-center pb-30">
+                                <h1 style="line-height:300px;color:white">HYLA - превращает дом в оздоровительный курорт</h1>
+                            </div>
+                </div>
+            </div>
+            <!-- banner__sd-area-end -->
 
 
 
-            <!-- blog area start -->
+
+            <!-- blog area start  novosti-->
             <section class="blog__area pt-85 pb-30">
                 <div class="container">
                     <div class="section__title-line section__title-line-2 mb-30">

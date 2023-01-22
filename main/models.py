@@ -150,3 +150,13 @@ class Info(models.Model):
 
     def __str__(self):
         return f'{self.title}  '
+
+
+class Nagrada(models.Model):
+    title = models.CharField(max_length=300, blank=True)
+    logo = models.ImageField(upload_to='upload', blank=True)
+    description = models.TextField(blank=True)
+    date = models.DateField(default=datetime.now())
+
+    def __str__(self):
+        return f'{self.title} '
